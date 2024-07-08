@@ -1,22 +1,13 @@
 const fs = require("fs");
 const input = fs.readFileSync(0).toString().trim().split("\n");
-const n = parseInt(input[0]);
-const numbers1 = input[1].trim().split(" ").map(Number);
-const numbers2 = input[2].trim().split(" ").map(Number);
-
-let flag = false;
+const n = parseInt(input[0]); // 입력의 첫 줄을 정수로 파싱
+const numbers1 = input[1].split(" ").map(Number); // 두 번째 줄을 숫자 배열로 변환
+const numbers2 = new Set(input[2].split(" ").map(Number)); // 세 번째 줄을 숫자 Set으로 변환
 
 for (let num of numbers1) {
-    flag = false;
-    for (let num2 of numbers2) {
-        if (num == num2) {
-            flag = true;
-            break;
-        }
-    }
-    if (flag == false) {
+    if (!numbers2.has(num)) {
         console.log("No");
-        return 0;
+        return;
     }
 }
 console.log("Yes");
