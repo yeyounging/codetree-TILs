@@ -16,5 +16,5 @@ for(let num of numbers1){
     if(flag==false){
         console.log("No");
         return 0;
-}
+}}
 console.log("Yes");
