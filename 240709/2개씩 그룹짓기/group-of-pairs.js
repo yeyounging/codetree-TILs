@@ -1,7 +1,7 @@
 const fs = require("fs");
 const input = fs.readFileSync(0).toString().split("\n");
 const n = Number(input[0]);
-const arr = input[1].split(" ").map(Number);
+const arr = input[1].trim().split(" ").map(Number);
 let max = 0;
 
 const cmp = (prev,cur) => {
