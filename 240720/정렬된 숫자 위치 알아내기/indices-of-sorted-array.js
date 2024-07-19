@@ -14,7 +14,7 @@ while(flag){
         min_index=i; 
         break;
         }
-        flag = false;
+        if(i=length-1) flag = false;
     }
     if(!flag) break;
     for(let j=0;j<length;j++){
