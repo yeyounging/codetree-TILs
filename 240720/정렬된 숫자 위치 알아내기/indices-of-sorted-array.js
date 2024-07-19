@@ -1,26 +1,32 @@
-const fs = require("fs");
-const input = fs.readFileSync(0).toString().trim().split("\n");
-const length = Number(input[0].trim());
-const arr = input[1].trim().split(" ").map(Number);
-const isSorted = Array(length).fill(false);
-const ans = Array(length);
-
-let min_index= 0;
-let cnt = 1;
-let flag = true;
-while(flag){
-    for(let i =0 ; i<length;i++){
-        if(isSorted[i] ==false) {
-        min_index=i; 
-        break;
-        }
-        if(i==length-1) flag = false;
+class Num {
+    constructor(number, index) {
+        this.number = number;
+        this.index = index;
     }
-    if(!flag) break;
-    for(let j=0;j<length;j++){
-        if(isSorted[j]==false && arr[min_index]>arr[j]) min_index=j;
-    }
-    ans[min_index] = cnt++;
-    isSorted[min_index] = true;
 }
-console.log(ans.join(" "));
+
+const fs = require("fs");
+const input = fs.readFileSync(0).toString().trim().split('\n');
+
+// 변수 선언 및 입력
+const n = Number(input[0]);
+const arr = input[1].split(' ').map(Number);
+let numbers = [];
+for (let i = 0; i < arr.length; i++) {
+    numbers.push(new Num(arr[i], i));
+}
+let answer = Array(n).fill(0);
+
+// Custom Comparator를 활용한 정렬
+numbers.sort((a, b) => {
+    if (a.number === b.number) return a.index - b.index;
+    return a.number - b.number;
+});
+
+// 정렬된 숫자들의 원래 인덱스를 활용한 정답 배열 저장
+for (let i = 0; i < numbers.length; i++) {
+    answer[numbers[i].index] = i + 1; // 인덱스 보정
+}
+
+// 출력
+console.log(answer.join(" "));
