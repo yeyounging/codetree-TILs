@@ -10,15 +10,15 @@ let cnt = 1;
 let flag = true;
 while(flag){
     for(let i =0 ; i<length;i++){
-        if(isSorted[i] ===false) {
+        if(isSorted[i] ==false) {
         min_index=i; 
         break;
         }
-        if(i=length-1) flag = false;
+        if(i==length-1) flag = false;
     }
     if(!flag) break;
     for(let j=0;j<length;j++){
-        if(isSorted[j]===false && arr[min_index]>arr[j]) min_index=j;
+        if(isSorted[j]==false && arr[min_index]>arr[j]) min_index=j;
     }
     ans[min_index] = cnt++;
     isSorted[min_index] = true;
